@@ -28,22 +28,21 @@
             <h3>Yarn and foot details</h3>
         </div>
      </div>
-
         <form id="pattern-form" class="row form-horizontal" role="form" name="myform" method="get">
             <div class="col-sm-6">
             <div class="form-group">
                 <label for="input units" class="col-sm-3 control-label">Units</label>
                 <div class="col-sm-3">
                     <select id="units" class="form-control" name="units" value="update" >
-                        <option value="inches" {% if units == 'inches' %}selected{% endif %} >Inches</option>
-                        <option value="cms" {% if units == 'cms' %}selected{% endif %}>Centimetres</option>
+                        <option value="inches" {% if data.units == 'inches' %}selected{% endif %} >Inches</option>
+                        <option value="cms" {% if data.units == 'cms' %}selected{% endif %}>Centimetres</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <label for="horizontal gauge" class="col-sm-3 control-label">Horizontal gauge</label>
                 <div class="col-sm-3">
-                    <input class="form-control" name="stitches" type="text" STYLE="background-color:{{ st_color }}" value="{{ stitches }}">
+                    <input class="form-control {% if 'stitches' in error_list %}formerr{% endif %}" name="stitches" type="text" value="{{ data.stitches }}">
                 </div>
                 <span class="help-block">Stitches per
                     {% if units == 'inches' %}4"{% else %}10 cm{% endif %}</span>
@@ -51,7 +50,7 @@
             <div class="form-group">
                 <label for="vertical gauge" class="col-sm-3 control-label">Vertical gauge</label>
                 <div class="col-sm-3">
-                    <input class="form-control" name="rows" type="text" STYLE="background-color:{{ r_color }}" value="{{ rows }}">
+                    <input class="form-control {% if 'rows' in error_list %}formerr{% endif %}" name="rows" type="text"  value="{{ data.rows }}">
                 </div>
                 <span class="help-block">Rows per
                     {% if units == 'inches' %}4"{% else %}10 cm{% endif %}</span>
@@ -59,7 +58,7 @@
             <div class="form-group">
                 <label for="circumference" class="col-sm-3 control-label">Circumference</label>
                 <div class="col-sm-3">
-                    <input class="form-control" name="circum" type="text" STYLE="background-color:{{ c_color }}" value="{{ circum }}">
+                    <input class="form-control {% if 'circum' in error_list %}formerr{% endif %}" name="circum" type="text" value="{{ data.circum }}">
                 </div>
                 <span class="help-block">Circumference around widest part of foot in
                 {{ units }}</span>
@@ -67,14 +66,14 @@
             <div class="form-group">
                 <label for="foot length" class="col-sm-3 control-label">Foot length</label>
                 <div class="col-sm-3">
-                    <input class="form-control" name="foot_length" type="text" STYLE="background-color:{{ fl_color }}" value="{{ foot_length }}">
+                    <input class="form-control {% if 'foot_length' in error_list %}formerr{% endif %}" name="foot_length" type="text" value="{{ data.foot_length }}">
                 </div>
                 <span class="help-block">Length of foot in {{ units }}</span>
             </div>
             <div class="form-group">
                 <label for="ease" class="col-sm-3 control-label">Ease</label>
                 <div class="col-sm-3">
-                    <input class="form-control" name="ease" type="text" STYLE="background-color:{{ e_color }}" value="{{ ease }}">
+                    <input class="form-control {% if 'ease' in error_list %}formerr{% endif %}" name="ease" type="text" value="{{ data.ease }}">
                 </div>
                 <span class="help-block">Ease as % of total number of stitches (default is -8%)</span>
             </div>
