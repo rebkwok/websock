@@ -27,10 +27,11 @@ body {
 
 .anchorspace{
     padding-top: 60px;
-    margin-top: -60px;}
+    margin-top: -60px;
+}
 
 .photo {
-	auto;
+	width: auto;
 	height: 50px;
 	padding: 0 0 0 0;
 	overflow: hidden;
@@ -39,6 +40,3 @@ body {
 .formerr {
     background-color: #FA5858;
 }
-
-
-
