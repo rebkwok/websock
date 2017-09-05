@@ -15,9 +15,12 @@
                     or take a look at the <a href="/links">useful links</a> page. <br><br>
                     No particular stitch pattern is suggested for the sock instep or leg.  Choose your own after you finish the toe.
                     A simple ribbing pattern always works well. <br><br>
-                    <strong>Warning!</strong> If you are using a stitch pattern, make sure your pattern repeat divides
-                    evenly into your total stitches.  Your total stitches will be twice the number of stitches you cast on
-                    for the toe.
+
+                    If you are using a stitch pattern, enter the number of stitches you need your total stitches to be divisible by.
+                    Your total stitches will be twice the number of stitches you cast on for the toe.  If you need an even number of
+                    pattern repeats, enter twice your pattern repeat number in the "divisible by" field.  (E.g. if you have a 4 stitch
+                    pattern repeat, and you want an even number of repeats, enter 8 in the divisible by field.  Note that the larger this
+                    number, the further your stitch count may diverge from the count calculated from your gauge.
                 </p>
             </div>
         </div>
@@ -61,21 +64,28 @@
                     <input class="form-control {% if 'circum' in error_list %}formerr{% endif %}" name="circum" type="text" value="{{ data.circum }}">
                 </div>
                 <span class="help-block">Circumference around widest part of foot in
-                {{ units }}</span>
+                {{ data.units }}</span>
             </div>
             <div class="form-group">
                 <label for="foot length" class="col-sm-3 control-label">Foot length</label>
                 <div class="col-sm-3">
                     <input class="form-control {% if 'foot_length' in error_list %}formerr{% endif %}" name="foot_length" type="text" value="{{ data.foot_length }}">
                 </div>
-                <span class="help-block">Length of foot in {{ units }}</span>
+                <span class="help-block">Length of foot in {{ data.units }}</span>
             </div>
             <div class="form-group">
                 <label for="ease" class="col-sm-3 control-label">Ease</label>
                 <div class="col-sm-3">
                     <input class="form-control {% if 'ease' in error_list %}formerr{% endif %}" name="ease" type="text" value="{{ data.ease }}">
                 </div>
-                <span class="help-block">Ease as % of total number of stitches (default is -8%)</span>
+                <span class="help-block">Ease as % of total number of stitches (enter -ve value for negative ease)</span>
+            </div>
+            <div class="form-group">
+                <label for="divisible_by" class="col-sm-3 control-label">Divisible by</label>
+                <div class="col-sm-3">
+                    <input class="form-control {% if 'divisible_by' in error_list %}formerr{% endif %}" name="divisible_by" type="text" value="{{ data.divisible_by }}">
+                </div>
+                <span class="help-block">Number of stitches in pattern repeat</span>
             </div>
                 <div class="btn-group-sm">
                     <label class="col-sm-3 control-label"></label>

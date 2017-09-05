@@ -35,7 +35,7 @@
 
         <div class="btn-group-sm">
             <a class="btn btn-info"
-               href="/?units={{ data.units }}&stitches={{ data.stitches }}&rows={{ data.rows }}&circum={{ data.circum }}&foot_length={{ data.foot_length }}&ease={{ data.ease }}">
+               href="/?units={{ data.units }}&stitches={{ data.stitches }}&rows={{ data.rows }}&circum={{ data.circum }}&foot_length={{ data.foot_length }}&ease={{ data.ease }}&divisible_by={{ data.divisible_by }}">
                 Back to Pattern Generator</a>
         </div>
 
@@ -52,18 +52,16 @@
                 <div class="panel-body">
                     <ul>
                         <li><a href="/links#Provisional">Provisional cast on</a> {{ "%d"|format(data.cast_on) }} stitches.</li>
-                        <li>Knit {{ "%d"|format(data.cast_on -1) }} stitches until 1 stitch before end, <a href="/links#shortrows">wrap and turn</a>.</li>
-                        <li>Purl {{ "%d"|format(data.cast_on -2) }} stitches until 1 stitch before end, wrap and turn.</li>
-                        <li>Knit {{ "%d"|format(data.cast_on -3) }} stitches until 1 stitch before first wrapped stitch, wrap and turn.</li>
-                        <li>Purl {{ "%d"|format(data.cast_on -4) }} stitches until 1 stitch before first wrapped stitch, wrap and turn.</li>
+                        <li>Sl1, knit {{ "%d"|format(data.cast_on - 2) }} stitches until 1 stitch before end, <a href="/links#shortrows">wrap and turn</a>.</li>
+                        <li>Sl1, purl {{ "%d"|format(data.cast_on - 3) }} stitches until 1 stitch before end, wrap and turn.</li>
                         <li>Continue short rows until {{ "%d"|format(data.toe_end) }} stitches remain unwrapped.  {{ "%d"|format((data.cast_on - data.toe_end) / 2) }}
                             stitches wrapped on each side.</li>
-                        <li>Knit {{ "%d"|format(data.toe_end) }}, pick up and knit wrap and next stitch together through back loop, wrap and
+                        <li>Sl1, knit {{ "%d"|format(data.toe_end - 1) }}, pick up and knit wrap and next stitch together through back loop, wrap and
                             turn.</li>
-                        <li>Purl {{ "%d"|format(data.toe_end + 1) }}, pick up and purl wrap and next stitch together, wrap and turn.</li>
-                        <li>Knit {{ "%d"|format(data.toe_end + 2) }}, pick up and knit both wraps and next stitch together through back loop, wrap and
+                        <li>Sl1, purl {{ "%d"|format(data.toe_end) }}, pick up and purl wrap and next stitch together, wrap and turn.</li>
+                        <li>Sl1, knit {{ "%d"|format(data.toe_end + 1) }}, pick up and knit both wraps and next stitch together through back loop, wrap and
                             turn.</li>
-                        <li>Purl {{ "%d"|format(data.toe_end + 3) }}, pick up and purl both wraps and next stitch together, wrap and turn.</li>
+                        <li>Sl1, purl {{ "%d"|format(data.toe_end + 2) }}, pick up and purl both wraps and next stitch together, wrap and turn.</li>
                         <li>Continue until there is one double-wrapped stitch at each end.  You will have just wrapped the last stitch on a
                         purl row and turned to the knit side again.</li>
 
@@ -101,16 +99,14 @@
                 </div>
                 <div class="panel-body">
                     <ul>
-                        <li>Knit {{ "%d"|format(data.cast_on -1) }} stitches until 1 stitch before end of sole stitches, wrap and turn.</li>
-                        <li>Purl {{ "%d"|format(data.cast_on -2) }} stitches until 1 stitch before end of sole stitches, wrap and turn.</li>
-                        <li>Knit {{ "%d"|format(data.cast_on -3) }} stitches until 1 stitch before first wrapped stitch, wrap and turn.</li>
-                        <li>Purl {{ "%d"|format(data.cast_on -4) }} stitches until 1 stitch before first wrapped stitch, wrap and turn.</li>
+                        <li>Sl1, knit {{ "%d"|format(data.cast_on - 2) }} stitches until 1 stitch before end of sole stitches, wrap and turn.</li>
+                        <li>Sl1. purl {{ "%d"|format(data.cast_on - 3) }} stitches until 1 stitch before end of sole stitches, wrap and turn.</li>
                         <li>Continue short rows until {{ "%d"|format(data.heel_end) }} stitches remain unwrapped.  {{ "%d"|format((data.cast_on - data.heel_end)/2) }}
                             stitches wrapped on each side.</li>
-                        <li>Knit {{ "%d"|format(data.heel_end) }}, pick up and knit wrap and next stitch together, wrap and turn.</li>
-                        <li>Purl {{ "%d"|format(data.heel_end + 1) }}, pick up and purl wrap and next stitch together, wrap and turn.</li>
-                        <li>Knit {{ "%d"|format(data.heel_end + 2) }}, pick up and knit both wraps and next stitch together, wrap and turn.</li>
-                        <li>Purl {{ "%d"|format(data.heel_end + 3) }}, pick up and purl both wrap and next stitch together, wrap and turn.</li>
+                        <li>Sl1, knit {{ "%d"|format(data.heel_end - 1) }}, pick up and knit wrap and next stitch together, wrap and turn.</li>
+                        <li>Sl1, purl {{ "%d"|format(data.heel_end) }}, pick up and purl wrap and next stitch together, wrap and turn.</li>
+                        <li>Sl1, knit {{ "%d"|format(data.heel_end + 1) }}, pick up and knit both wraps and next stitch together, wrap and turn.</li>
+                        <li>Sl1, purl {{ "%d"|format(data.heel_end + 2) }}, pick up and purl both wrap and next stitch together, wrap and turn.</li>
                         <li>Continue until there is one double-wrapped stitch at each end.  You will have just wrapped the last stitch on a
                         purl row and turned to the knit side again.</li>
 

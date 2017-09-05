@@ -17,7 +17,7 @@ class Pattern_info(object):
             self.r_gauge = self.rows / 10
 
 
-def cast_on_stitches(pattern_info, foot_circum):
+def cast_on_stitches(pattern_info, foot_circum, divisible_by=1):
     """
     Calculates number of stitches to provisionally cast on to start short row
     toe.
@@ -25,8 +25,9 @@ def cast_on_stitches(pattern_info, foot_circum):
     negative for socks).
     """
     sock_circum = float(foot_circum) + (float(foot_circum) * (pattern_info.ease/100))
-    cast_on = round((float(sock_circum) * pattern_info.st_gauge) / 2)
-    return cast_on
+    cast_on = (float(sock_circum) * pattern_info.st_gauge) / 2
+    cast_on_rounded = round(cast_on / divisible_by) * divisible_by
+    return cast_on_rounded
 
 
 def short_row_end_stitches(cast_on_sts, percent_end):
@@ -67,9 +68,9 @@ def short_row_length(cast_on_sts, short_row_end_stitches, pattern_info):
     return sr_length
 
 
-def pattern(pattern_info, foot_circum):
+def pattern(pattern_info, foot_circum, divisible_by):
 
-    cast_on = cast_on_stitches(pattern_info, foot_circum)
+    cast_on = cast_on_stitches(pattern_info, foot_circum, divisible_by)
     heel_end = short_row_end_stitches(cast_on, 50)
     toe_end = short_row_end_stitches(cast_on, 40)
     heel_length = short_row_length(cast_on, heel_end, pattern_info)

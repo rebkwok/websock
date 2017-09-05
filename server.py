@@ -11,7 +11,6 @@ app = Flask(__name__)
 
 
 def form_input(request):
-
     # result dict with each parameter as a tuple of (value, error)
     # units is a choice field, so no error option
     result = {
@@ -21,6 +20,7 @@ def form_input(request):
         'circum': request.args.get('circum', 7),
         'foot_length': request.args.get('foot_length', 8),
         'ease': request.args.get('ease', -8),
+        'divisible_by': request.args.get('divisible_by', 1),
     }
 
     errors = []
@@ -30,6 +30,11 @@ def form_input(request):
             result.update({param: float(result[param])})
         except ValueError:
             errors.append(param)
+
+    try:
+        result.update({'divisible_by': int(result['divisible_by'])})
+    except ValueError:
+        errors.append('divisible_by')
 
     return result, errors
 
@@ -59,6 +64,7 @@ def pattern():
             'circum': data['circum'],
             'foot_length': data['foot_length']['value'],
             'ease': data['ease']['value'],
+            'divisible_by': data['divisible_by']
         }
 
         url = '/?' + urlencode(url_values)
@@ -69,7 +75,7 @@ def pattern():
         data['units'], data['stitches'], data['rows']
     )
     cast_on, heel_end, toe_end, heel_length = sockgen.pattern(
-        sock_info, data['circum']
+        sock_info, data['circum'], data['divisible_by']
     )
 
     data.update({
