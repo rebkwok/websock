@@ -4,11 +4,12 @@
 
 class Pattern_info(object):
 
-    def __init__(self, units="inches", stitches=24, rows=30, ease=-8):
-        self.units = units
-        self.stitches = float(stitches)
-        self.rows = float(rows)
-        self.ease = float(ease)
+    def __init__(self, data):
+        self.units = data.get("units", "inches")
+        self.stitches = data.get("stitches", 36.0)
+        self.rows = data.get("rows", 40.0)
+        self.ease = data.get("ease", -8.0)
+
         if self.units == "inches":
             self.st_gauge = self.stitches / 4
             self.r_gauge = self.rows / 4
@@ -24,8 +25,8 @@ def cast_on_stitches(pattern_info, foot_circum, divisible_by=1):
     Ease should be entered as a percentage, negative or positive (usually
     negative for socks).
     """
-    sock_circum = float(foot_circum) + (float(foot_circum) * (pattern_info.ease/100))
-    cast_on = (float(sock_circum) * pattern_info.st_gauge) / 2
+    sock_circum = foot_circum + (foot_circum * (pattern_info.ease / 100))
+    cast_on = (sock_circum * pattern_info.st_gauge) / 2
     cast_on_rounded = round(cast_on / divisible_by) * divisible_by
     return cast_on_rounded
 
@@ -39,7 +40,8 @@ def short_row_end_stitches(cast_on_sts, percent_end):
     40% for toe and 50% for heel)
     """
 
-    x = round(cast_on_sts * (float(percent_end)/100))
+    percent_end = float(percent_end)
+    x = round(cast_on_sts * (percent_end/100))
 
     if cast_on_sts % 2 == 0:  # if starting stitches are an even number
         if x % 2 == 0:
@@ -68,14 +70,44 @@ def short_row_length(cast_on_sts, short_row_end_stitches, pattern_info):
     return sr_length
 
 
-def pattern(pattern_info, foot_circum, divisible_by):
+def calculate_gusset(pattern_info, additional_instep):
+    """
+    :param additional_instep: in ins/cms, amount of extra measurement in the
+    instep compared to ball of foot
+    :return: number of gusset sts needed, length of gusset in ins/cms
+    """
+    # additional instep circumference with ease calculated
+    sock_gusset = additional_instep + \
+        (additional_instep * (pattern_info.ease / 100))
+    gusset_sts_raw = sock_gusset * pattern_info.st_gauge
+    # Round to nearest even number
+    gusset_sts = round(gusset_sts_raw / 2) * 2
+    # calculate gusset length; gusset will be increased 2 sts every other row
+    gusset_length = gusset_sts / pattern_info.r_gauge
+
+    return gusset_sts, gusset_length
+
+
+def pattern(pattern_info, foot_circum, foot_length, instep_circum, divisible_by):
 
     cast_on = cast_on_stitches(pattern_info, foot_circum, divisible_by)
     heel_end = short_row_end_stitches(cast_on, 50)
     toe_end = short_row_end_stitches(cast_on, 40)
-    heel_length = short_row_length(cast_on, heel_end, pattern_info)
+    gusset_sts, gusset_length = calculate_gusset(
+        pattern_info, instep_circum - foot_circum
+    )
+    heel_length = short_row_length(cast_on + gusset_sts, heel_end, pattern_info)
+    foot_length_before_gusset = foot_length - heel_length - gusset_length
 
-    return cast_on, heel_end, toe_end, heel_length
+    return {
+        'cast_on': cast_on,
+        'heel_end': heel_end,
+        'toe_end': toe_end,
+        'heel_length': heel_length,
+        'gusset_sts': gusset_sts,
+        'heel_sts': cast_on + gusset_sts,
+        'foot_length_before_gusset': foot_length_before_gusset
+    }
 
 
 def main():

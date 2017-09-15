@@ -2,11 +2,16 @@
 
 
 {% block content %}
-
-      <div class="page-header">
-        <h2>Your Custom Sock Pattern</h2>
+   <div class="container row">
+     <div class="page-header row">
+        <div class="col-xs-10"><h2>Your Custom Sock Pattern</h2></div>
+        <div class="col-xs-2">
+            <a href="javascript:window.print()"><img src="../static/print_icon.gif" height='50px;' alt="print this page" class="hide-on-print"/></a>
+        </div>
     </div>
 
+   <div class="row">
+    <div class="col-xs-12">
             <p>
                 <strong>Gauge</strong><br>
             {% if data.sock_info.units == "inches"%}
@@ -22,7 +27,12 @@
                 <strong>Foot Circumference</strong><br>
                 {{ data.circum }} {{ data.units }}
             </p>
-
+            {% if data.include_gusset == 'yes' %}
+            <p>
+                <strong>Instep Circumference</strong><br>
+                {{ data.instep }} {{ data.units }}
+            </p>
+            {% endif %}
            <p>
                 <strong>Foot Length</strong><br>
                 {{ data.foot_length }} {{ data.units }}
@@ -32,19 +42,18 @@
                 <strong>Ease</strong><br>
                 {{ data.ease }} %
             </p>
-
+        </div>
         <div class="btn-group-sm">
-            <a class="btn btn-info"
-               href="/?units={{ data.units }}&stitches={{ data.stitches }}&rows={{ data.rows }}&circum={{ data.circum }}&foot_length={{ data.foot_length }}&ease={{ data.ease }}&divisible_by={{ data.divisible_by }}">
+            <a class="btn btn-info hide-on-print"
+               href="/?units={{ data.units }}&stitches={{ data.stitches }}&rows={{ data.rows }}&circum={{ data.circum }}&foot_length={{ data.foot_length }}&ease={{ data.ease }}&divisible_by={{ data.divisible_by }}&include_gusset={{ data.include_gusset }}">
                 Back to Pattern Generator</a>
         </div>
-
+        </div>
         <div class="page-header">
             <h3>Pattern</h3>
         </div>
 
-       <div class="row">
-            <div class="col-sm-10">
+            <div class="col-sm-12">
               <div class="panel panel-info">
                 <div class="panel-heading">
                   <h4 class="panel-title">Toe</h4>
@@ -69,10 +78,8 @@
                  </div>
               </div>
             </div>
-        </div>
 
-        <div class = "row">
-           <div class="col-sm-10">
+           <div class="col-sm-12">
               <div class="panel panel-info">
                 <div class="panel-heading">
                   <h4 class="panel-title">Foot</h4>
@@ -84,24 +91,38 @@
                         first round, and the wraps at the beginning of the short row section on the second round.</li>
                         <li>The first half of the stitches will be the sole, the second half will be the instep.  If you
                             are using a pattern for the instep and leg, start the pattern on the instep stitches now.</li>
-                        <li>Knit until sock measures {{ "%.1f %s"|format((data.foot_length - data.heel_length), data.units) }}.</li>
+                        <li>Knit until sock measures {{ "%.1f %s"|format((data.foot_length_before_gusset), data.units) }}.</li>
                     </ul>
                  </div>
                </div>
             </div>
-        </div>
 
-        <div class = "row">
-           <div class="col-sm-10">
+    {% if data.gusset_sts %}
+           <div class="col-sm-12">
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h4 class="panel-title">Gusset</h4>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <li>Gusset round 1: Increase one stitch at each end of the sole stitches.</li>
+                        <li>Gusset round 2: Knit</li>
+                        <li>Repeat the two gusset rounds {{ "%d"|format(data.gusset_sts / 2) }} times in total ({{ data.gusset_sts }} stitches increased).</li>
+                    </ul>
+                 </div>
+               </div>
+            </div>
+    {% endif %}
+           <div class="col-sm-12">
               <div class="panel panel-info">
                 <div class="panel-heading">
                   <h3 class="panel-title">Heel</h3>
                 </div>
                 <div class="panel-body">
                     <ul>
-                        <li>Sl1, knit {{ "%d"|format(data.cast_on - 2) }} stitches until 1 stitch before end of sole stitches, wrap and turn.</li>
-                        <li>Sl1. purl {{ "%d"|format(data.cast_on - 3) }} stitches until 1 stitch before end of sole stitches, wrap and turn.</li>
-                        <li>Continue short rows until {{ "%d"|format(data.heel_end) }} stitches remain unwrapped.  {{ "%d"|format((data.cast_on - data.heel_end)/2) }}
+                        <li>Sl1, knit {{ "%d"|format(data.heel_sts - 2) }} stitches until 1 stitch before end of sole stitches, wrap and turn.</li>
+                        <li>Sl1. purl {{ "%d"|format(data.heel_sts - 3) }} stitches until 1 stitch before end of sole stitches, wrap and turn.</li>
+                        <li>Continue short rows until {{ "%d"|format(data.heel_end) }} stitches remain unwrapped.  {{ "%d"|format((data.heel_sts - data.heel_end)/2) }}
                             stitches wrapped on each side.</li>
                         <li>Sl1, knit {{ "%d"|format(data.heel_end - 1) }}, pick up and knit wrap and next stitch together, wrap and turn.</li>
                         <li>Sl1, purl {{ "%d"|format(data.heel_end) }}, pick up and purl wrap and next stitch together, wrap and turn.</li>
@@ -114,10 +135,8 @@
                  </div>
               </div>
            </div>
-        </div>
 
-        <div class = "row">
-           <div class="col-sm-10">
+           <div class="col-sm-12">
               <div class="panel panel-info">
                 <div class="panel-heading">
                   <h4 class="panel-title">Leg</h4>
@@ -128,6 +147,10 @@
                         <li>Knit two full rounds, picking up and knitting the wraps at the end of the short row section on the
                         first round, and the wraps at the beginning of the short row section on the second round.  Remember to
                         continue your pattern over the instep stitches.</li>
+                        {% if data.gusset_sts %}
+                        <li>Next {{ "%d"|format(data.gusset_sts / 2) }} rounds: Decrease one stitch at either end of heel stitches, work in pattern across instep
+                            ({{ data.gusset_sts }} decreased).  You should now have a total of {{ data.cast_on * 2 }} stitches again.</li>
+                        {% endif %}
                         <li>If you are using a pattern on the instep, begin to knit it over all stitches now.</li>
                         <li>Knit until leg is {{ "%.1f %s"|format((data.foot_length), data.units) }}, or desired length before end ribbing.</li>
                         <li>Switch to K1P1 or K2P2 ribbing for {% if data.sock_info.units == 'inches' %}1 inch{% else %}2.5 cm{% endif %} or desired length.</li>
@@ -136,6 +159,5 @@
                  </div>
               </div>
            </div>
-        </div>
-
+    </div>
 {% endblock content %}

@@ -5,12 +5,13 @@
 
     <div class="row">
         <div class="page-header">
-            <div class="col-sm-11">
-            <h2>Sock Pattern Generator</h2>
+            <div class="col-sm-12">
+            <h2>Sock Pattern Generator</h2></div>
+            <div class="col-xs-8">
                 <p>
                    A knitting pattern generator for socks to fit feet of any size!  These socks are knit toe-up with a short-row
-                    toe and heel. <br><br>
-                    This is a very basic recipe for making a sock, and assumes you are already familiar with sock-making in
+                    toe and heel and optional gusset increases for a larger instep. <br><br>
+                    This is a basic recipe for making a sock, and assumes you are already familiar with sock-making in
                     general and with techniques such as provisional cast on and short rows.  Choose your preferred method
                     or take a look at the <a href="/links">useful links</a> page. <br><br>
                     No particular stitch pattern is suggested for the sock instep or leg.  Choose your own after you finish the toe.
@@ -23,16 +24,20 @@
                     number, the further your stitch count may diverge from the count calculated from your gauge.
                 </p>
             </div>
+            <div class="col-xs-4">
+                <img class="img-responsive" src="../static/socks2.jpg">
+            </div>
+            </div>
         </div>
     </div>
 
       <div class="row page-header">
-         <div class="col-sm-11">
+         <div class="col-xs-12">
             <h3>Yarn and foot details</h3>
         </div>
      </div>
         <form id="pattern-form" class="row form-horizontal" role="form" name="myform" method="get">
-            <div class="col-sm-6">
+            <div class="col-xs-7 col-sm-8">
             <div class="form-group">
                 <label for="input units" class="col-sm-3 control-label">Units</label>
                 <div class="col-sm-3">
@@ -47,45 +52,60 @@
                 <div class="col-sm-3">
                     <input class="form-control {% if 'stitches' in error_list %}formerr{% endif %}" name="stitches" type="text" value="{{ data.stitches }}">
                 </div>
-                <span class="help-block">Stitches per
-                    {% if data.units == 'inches' %}4"{% else %}10cm{% endif %}</span>
+                <div class="help-block col-sm-6">Stitches per
+                    {% if data.units == 'inches' %}4"{% else %}10cm{% endif %}</div>
             </div>
             <div class="form-group">
                 <label for="vertical gauge" class="col-sm-3 control-label">Vertical gauge</label>
                 <div class="col-sm-3">
                     <input class="form-control {% if 'rows' in error_list %}formerr{% endif %}" name="rows" type="text"  value="{{ data.rows }}">
                 </div>
-                <span class="help-block">Rows per
-                    {% if data.units == 'inches' %}4"{% else %}10cm{% endif %}</span>
+                <div class="help-block col-sm-6">Rows per
+                    {% if data.units == 'inches' %}4"{% else %}10cm{% endif %}</div>
             </div>
             <div class="form-group">
-                <label for="circumference" class="col-sm-3 control-label">Circumference</label>
+                <label for="circumference" class="col-sm-3 control-label">Foot Circumference</label>
                 <div class="col-sm-3">
                     <input class="form-control {% if 'circum' in error_list %}formerr{% endif %}" name="circum" type="text" value="{{ data.circum }}">
                 </div>
-                <span class="help-block">Circumference around widest part of foot in
-                {{ data.units }}</span>
+                <div class="help-block col-sm-6">Circumference around ball of foot in {{ data.units }}</div>
+            </div>
+            <div class="form-group">
+                <label for="include_gusset" class="col-sm-3 control-label">Include gusset increases?</label>
+                <div class="col-sm-3">
+                    <input name="include_gusset" type="checkbox" value="yes" {% if data.include_gusset == 'yes' %}checked{% endif %}>
+                </div>
+                <div class="col-sm-6 help-block">Tick to include gusset increases.  If your instep circumference is no more than
+                    {% if data.units == 'inches' %}an inch{% else %}2.5 cm{% endif %} greater than your
+                    ball-of-foot circumference, and your gauge is not very tight, you can probably skip gusset increases.</div>
+            </div>
+            <div class="form-group">
+                <label for="instep" class="col-sm-3 control-label">Instep Circumference</label>
+                <div class="col-sm-3">
+                    <input class="form-control {% if 'instep' in error_list %}formerr{% endif %}" name="instep" type="text" value="{{ data.instep }}">
+                </div>
+                <div class="help-block col-sm-6">Circumference around instep in {{ data.units }}</div>
             </div>
             <div class="form-group">
                 <label for="foot length" class="col-sm-3 control-label">Foot length</label>
                 <div class="col-sm-3">
                     <input class="form-control {% if 'foot_length' in error_list %}formerr{% endif %}" name="foot_length" type="text" value="{{ data.foot_length }}">
                 </div>
-                <span class="help-block">Length of foot in {{ data.units }}</span>
+                <div class="help-block col-sm-6">Length of foot in {{ data.units }}</div>
             </div>
             <div class="form-group">
                 <label for="ease" class="col-sm-3 control-label">Ease</label>
                 <div class="col-sm-3">
                     <input class="form-control {% if 'ease' in error_list %}formerr{% endif %}" name="ease" type="text" value="{{ data.ease }}">
                 </div>
-                <span class="help-block">Ease as % of total number of stitches (enter -ve value for negative ease)</span>
+                <div class="help-block col-sm-6">Ease as % of total number of stitches (enter -ve value for negative ease)</div>
             </div>
             <div class="form-group">
                 <label for="divisible_by" class="col-sm-3 control-label">Divisible by</label>
                 <div class="col-sm-3">
                     <input class="form-control {% if 'divisible_by' in error_list %}formerr{% endif %}" name="divisible_by" type="text" value="{{ data.divisible_by }}">
                 </div>
-                <span class="help-block">Number of stitches in pattern repeat</span>
+                <div class="help-block col-sm-6">Number of stitches in pattern repeat</div>
             </div>
                 <div class="btn-group-sm">
                     <label class="col-sm-3 control-label"></label>
@@ -93,11 +113,13 @@
                     <a class="btn btn-info" href="/">Reset Form</a>
                 </div>
              </div>
-            <div class="col-sm-5">
-                <img class="img-responsive" src="../static/socks.jpg">
-            </div>
-        </form>
 
+            <div class="col-xs-5 col-sm-4">
+                <img class="img-responsive" src="../static/socks.jpg"></br>
+                 <img class="img-responsive" src="../static/socks1.jpg">
+            </div>
+
+        </form>
 
 
 {% endblock content %}

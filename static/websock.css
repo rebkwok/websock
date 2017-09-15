@@ -40,3 +40,8 @@ body {
 .formerr {
     background-color: #FA5858;
 }
+
+.help-block {
+    font-size: smaller;
+    font-style: italic;
+}
