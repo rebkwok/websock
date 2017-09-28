@@ -58,6 +58,9 @@ def form():
 def links():
     return render_template('links.html')
 
+@app.route('/foot-measurement-charts')
+def foot_measurement_charts():
+    return render_template('charts.html')
 
 @app.route('/pattern')
 def pattern():

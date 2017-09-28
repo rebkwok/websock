@@ -45,3 +45,7 @@ body {
     font-size: smaller;
     font-style: italic;
 }
+
+.btn-group-sm.print-button {
+    margin-top: 10px;
+}

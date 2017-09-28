@@ -5,46 +5,44 @@
    <div class="container row">
      <div class="page-header row">
         <div class="col-xs-10"><h2>Your Custom Sock Pattern</h2></div>
-        <div class="col-xs-2">
-            <a href="javascript:window.print()"><img src="../static/print_icon.gif" height='50px;' alt="print this page" class="hide-on-print"/></a>
+        <div class="col-xs-2 print-button">
+            <a href="javascript:window.print()"><img src="../static/print_icon.gif" height='50px;' alt="print this page"/></a>
         </div>
     </div>
 
    <div class="row">
-    <div class="col-xs-12">
-            <p>
-                <strong>Gauge</strong><br>
-            {% if data.sock_info.units == "inches"%}
-                {{ "%.1f"|format(data.sock_info.st_gauge) }} stitches per {{ data.sock_info.units[0:4] }}<br>
-                {{ "%.1f"|format(data.sock_info.r_gauge) }} rows per {{ data.sock_info.units[0:4] }}
-            {% else %}
-                {{ "%.1f"|format(data.sock_info.st_gauge) }} stitches per {{ data.sock_info.units[0:2] }}<br>
-                {{ "%.1f"|format(data.sock_info.r_gauge) }} rows per {{ data.sock_info.units[0:2] }}
-            </p>
-            {% endif %}
+           <div class="col-xs-6">
+                    <strong>Gauge</strong><br>
+                {% if data.sock_info.units == "inches"%}
+                    {{ "%.1f"|format(data.sock_info.st_gauge) }} stitches per {{ data.sock_info.units[0:4] }}<br>
+                    {{ "%.1f"|format(data.sock_info.r_gauge) }} rows per {{ data.sock_info.units[0:4] }}
+                {% else %}
+                    {{ "%.1f"|format(data.sock_info.st_gauge) }} stitches per {{ data.sock_info.units[0:2] }}<br>
+                    {{ "%.1f"|format(data.sock_info.r_gauge) }} rows per {{ data.sock_info.units[0:2] }}
+                {% endif %}
+                <br/>
+                    <strong>Ease</strong><br>
+                    {{ data.ease }} %
+                <br/>
+            </div>
+           <div class="col-xs-6">
+                    <strong>Foot Circumference</strong><br>
+                    {{ data.circum }} {{ data.units }}
+                <br/>
+                {% if data.include_gusset == 'yes' %}
+                    <strong>Instep Circumference</strong><br>
+                    {{ data.instep }} {{ data.units }}
+                <br/>
+                {% endif %}
+                    <strong>Foot Length</strong><br>
+                    {{ data.foot_length }} {{ data.units }}
+                <br/>
+            </div>
 
-            <p>
-                <strong>Foot Circumference</strong><br>
-                {{ data.circum }} {{ data.units }}
-            </p>
-            {% if data.include_gusset == 'yes' %}
-            <p>
-                <strong>Instep Circumference</strong><br>
-                {{ data.instep }} {{ data.units }}
-            </p>
-            {% endif %}
-           <p>
-                <strong>Foot Length</strong><br>
-                {{ data.foot_length }} {{ data.units }}
-            </p>
 
-            <p>
-                <strong>Ease</strong><br>
-                {{ data.ease }} %
-            </p>
-        </div>
-        <div class="btn-group-sm">
-            <a class="btn btn-info hide-on-print"
+
+        <div class="btn-group-sm print-button col-xs-12">
+            <a class="btn btn-info"
                href="/?units={{ data.units }}&stitches={{ data.stitches }}&rows={{ data.rows }}&circum={{ data.circum }}&foot_length={{ data.foot_length }}&ease={{ data.ease }}&divisible_by={{ data.divisible_by }}&include_gusset={{ data.include_gusset }}">
                 Back to Pattern Generator</a>
         </div>
