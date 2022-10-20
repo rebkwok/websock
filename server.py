@@ -80,7 +80,3 @@ def links():
 @app.route('/foot-measurement-charts')
 def foot_measurement_charts():
     return render_template('charts.html')
-
-
-if __name__ == '__main__':
-    app.run('0.0.0.0', 8000, debug=True)
