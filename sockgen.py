@@ -6,6 +6,8 @@ class Pattern_info(object):
 
     def __init__(self, data):
         self.units = data.get("units", "inches")
+        self.unit = "inch" if self.units == "inches" else "cm"
+        self.unit_abbr = '"' if self.units == "inches" else "cm"
         self.stitches = data.get("stitches", 36.0)
         self.rows = data.get("rows", 40.0)
         self.ease = data.get("ease", -8.0)
@@ -16,6 +18,8 @@ class Pattern_info(object):
         elif self.units == "cms":
             self.st_gauge = self.stitches / 10
             self.r_gauge = self.rows / 10
+        else:
+            raise Exception(f"unknown units {self.units}")
 
 
 def cast_on_stitches(pattern_info, foot_circum, divisible_by=1):

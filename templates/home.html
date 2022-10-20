@@ -1,0 +1,46 @@
+{% extends "_base.html" %}
+
+
+{% block content %}
+
+<div class="row">
+    <h2>Sock Pattern Generator</h2>
+    <a href="/generator"><div class="btn btn-dark">Go to the pattern generator >></div></a>
+    <div class="col-9">
+        <p>
+            A knitting pattern generator for socks to fit feet of any size!  These socks are knit toe-up with a short-row
+            toe and heel and optional gusset increases for a larger instep. <br><br>
+            This is a basic recipe for making a sock, and assumes you are already familiar with sock-making in
+            general and with techniques such as provisional cast on and short rows.  Choose your preferred method
+            or take a look at the <a href="/links">useful links</a> page. <br><br>
+            No particular stitch pattern is suggested for the sock instep or leg.  Choose your own after you finish the toe.
+            A simple ribbing pattern always works well. <br><br>
+
+            If you are using a stitch pattern, enter the number of stitches you need your total stitches to be divisible by.
+            Your total stitches will be twice the number of stitches you cast on for the toe.  If you need an even number of
+            pattern repeats, enter twice your pattern repeat number in the "divisible by" field.  (E.g. if you have a 4 stitch
+            pattern repeat, and you want an even number of repeats, enter 8 in the divisible by field.  Note that the larger this
+            number, the further your stitch count may diverge from the count calculated from your gauge.
+        </p>
+    </div>
+    <div class="col-3">
+        <img class="img-fluid" src="../static/socks2.jpg">
+    </div>
+</div>
+
+<div class="col-12">
+    <h3 class="page-header">Yarn and foot details</h3>
+    <p>If you don't have your recipient's foot available to measure, check out these
+        <a href="/foot-measurement-charts">foot measurement charts</a> to estimate measurements
+        by shoe size.
+    </p>
+</div>    
+<a href="/generator"><div class="btn btn-dark mb-4">Go to the pattern generator >></div></a>
+
+</div>
+
+{% endblock content %}
+
+{% block javascript %}
+
+{% endblock javascript %}

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 
     <head>
-        <meta charset="utf-8">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon"
         type="image/png"
@@ -10,101 +11,69 @@
 
         <title>Sock Generator</title>
 
-
-
         <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-        <!-- Bootstrap theme -->
-        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
         <!-- Custom styles for this template -->
         <link href="../static/websock.css" rel="stylesheet">
-        <link rel="stylesheet" href="../static/print.css" type="text/css" media="print" />
-
-
-
-
 
     </head>
-    <body>
+    <body class="d-flex flex-column h-100">
 
-    <div class="wrap">
-        <!-- Fixed navbar -->
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-
-              <a class="navbar-brand" href="/">Sock Generator</a>
-            </div>
-            <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li class="dropdown">
-                  <a href="/links" class="dropdown-toggle" data-toggle="dropdown">Resources and tutorials<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                      <li><a href="/foot-measurement-charts">Foot measurement charts</a></li>
-                      <li class="divider"></li>
-                      <li><a href="/links">All tutorials</a></li>
-                      <li class="divider"></li>
-                      <li><a href="/links#Basic">Sock construction</a></li>
-                      <li><a href="/links#Provisional">Provisional cast ons</a></li>
-                      <li><a href="/links#magicloop">Magic loop knitting</a></li>
-                      <li><a href="/links#shortrows">Short rows</a></li>
-                      <li><a href="/links#castoffs">Stretchy cast offs</a></li>
-                  </ul>
-                </li>
-
-
-
-
-              </ul>
-            </div><!--/.nav-collapse -->
+      <nav class="navbar navbar-expand-lg fixed-top bg-secondary">
+        <div class="container-fluid">
+          <a class="navbar-brand text-light" href="/">
+            <img src="../static/sock-icon.png" style="max-height: 30px;"/> Sock Generator</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Resources and tutorials
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/foot-measurement-charts">Foot measurement charts</a></li>
+                  <li class="divider"></li>
+                  <li><a class="dropdown-item" href="/links">All tutorials</a></li>
+                  <li class="divider"></li>
+                  <li><a class="dropdown-item"href="/links#Basic">Sock construction</a></li>
+                  <li><a class="dropdown-item"href="/links#Provisional">Provisional cast ons</a></li>
+                  <li><a class="dropdown-item"href="/links#magicloop">Magic loop knitting</a></li>
+                  <li><a class="dropdown-item" href="/links#shortrows">Short rows</a></li>
+                  <li><a class="dropdown-item" href="/links#castoffs">Stretchy cast offs</a></li>
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
+      </nav>
+
+      <div class="wrapper">
+        <main role="main" class="container-fluid">
+          {% block content %}Need to define a block!{% endblock content %}
+        </main>
+      </div>   
 
 
-    {% block content %}
-
-        Need to define a block!
-
-    {% endblock content %}
-
-
-    <div class="row footer-section">
-         <div class="col-sm-1 print-button">
-             <img class="photo" src="../static/becky.jpg">
-         </div>
-          <div class="col-sm-10">
-            <p>About me: I'm rebkwok on <a href="http://www.ravelry.com/designers/becky-smith">Ravelry</a> and <a href="https://twitter.com/rebkwok">Twitter</a>.</p>
-        </div>
-    </div>
-
-    </div> <!--/end of page .wrap -->
+    <footer class="footer mt-auto py-1 bg-light">
+      <div class="container">
+        <span class="text-secondary">
+          <img class="photo" src="../static/becky.jpg">
+         About me: I'm rebkwok on <a href="http://www.ravelry.com/designers/becky-smith">Ravelry</a> and <a href="https://twitter.com/rebkwok">Twitter</a>.
+        </span>
+      </div>
+    </footer>
 
   </body>
 
 
 <!----Javascript ------->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
-
-<!----Google Analytics ------->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-52786107-1', 'auto');
-      ga('send', 'pageview');
-
-    </script>
-
+<!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    
 {% block javascript %}
 {% endblock javascript %}
 

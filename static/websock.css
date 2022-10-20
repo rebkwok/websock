@@ -1,10 +1,14 @@
 body {
-  padding-top: 50px;
-  padding-left: 50px;
+    padding-top: 60px;
+    margin-bottom: -60px;
+    background-color: transparent;
 }
 
-.form-group {
-    margin-bottom: 4px}
+
+footer{
+    border-bottom: 1px solid rgb(125, 119, 119);
+    border-top: 1px solid rgb(125, 119, 119);
+}
 
 .page-header{
     margin-top: 30px;
@@ -17,13 +21,6 @@ body {
     padding-bottom: 10px;
 }
 
-.footer-section{
-    margin: 20px 0 20px 0;
-    border-bottom: 1px solid #eee;
-    border-top: 1px solid #eee;
-    padding-bottom: 10px;
-    padding-top: 10px;
-}
 
 .anchorspace{
     padding-top: 60px;
@@ -38,7 +35,7 @@ body {
 }
 
 .formerr {
-    background-color: #FA5858;
+    color: #FA5858;
 }
 
 .help-block {
@@ -46,6 +43,6 @@ body {
     font-style: italic;
 }
 
-.btn-group-sm.print-button {
-    margin-top: 10px;
+#units {
+    list-style-type: none;
 }

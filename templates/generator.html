@@ -1,0 +1,45 @@
+{% extends "_base.html" %}
+
+
+{% block content %}
+
+    <div class="row">
+        <h2 class="page-header">Sock Pattern Generator</h2>
+
+        {% macro render_field(field) %}
+        <label>{{ field.label }}</label>
+        <div>{{ field(**kwargs)|safe }}</div>
+        {% if field.errors %}
+            <ul class="formerr">
+            {% for error in field.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endmacro %}
+
+     <form class="form-inline" method="POST" action="/generator">
+        {{ form.csrf_token }}
+        <div class="row">
+            <div class="col-12">{{ render_field(form.units, class='form-control, form-control-sm') }}</div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">{{ render_field(form.stitches, class='form-control, form-control-sm') }}</div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">{{ render_field(form.rows, class='form-control, form-control-sm') }}</div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">{{ render_field(form.circum, class='form-control, form-control-sm') }}</div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">{{ render_field(form.include_gusset, class='form-control, form-control-sm') }}</div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">{{ render_field(form.foot_length, class='form-control, form-control-sm') }}</div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">{{ render_field(form.instep, class='form-control, form-control-sm') }}</div>
+            
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">{{ render_field(form.ease, class='form-control, form-control-sm') }}</div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">{{ render_field(form.divisible_by, class='form-control, form-control-sm') }}</div>
+          </div>
+        <input class="btn btn-sm btn-success mt-2" type="submit" value="Go">
+    </form>
+
+</div>
+{% endblock content %}
+
+{% block javascript %}
+
+{% endblock javascript %}
