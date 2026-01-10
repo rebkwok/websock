@@ -2,8 +2,8 @@ from wtforms import Form, BooleanField, StringField, FloatField,IntegerField,Rad
 
 class PatternGeneratorForm(Form):
     units = RadioField('Units', choices=(("inches", "inches") , ("cms", "cms")), default="inches")
-    stitches = FloatField('Gauge: rows per 4in/10cm', default=36.0)
-    rows = FloatField('Gauge: Stitches per 4in/10cm', default=40.0)
+    stitches = FloatField('Gauge: stitches per 4in/10cm', default=36.0)
+    rows = FloatField('Gauge: rows per 4in/10cm', default=40.0)
     circum =  FloatField('Foot circumference', default=8.5)
     foot_length =  FloatField('Foot length', default=9.5)
     include_gusset =  BooleanField('Include gusset increases?', default=True)
